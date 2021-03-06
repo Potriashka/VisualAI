@@ -8,5 +8,6 @@
 ![Sorry, No](https://i.imgur.com/GKdDqY5.png)
 ##### Then just run
 ```python
-python app.py
+~$ cd src/
+~$ python painter.py
 ```
