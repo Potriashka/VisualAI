@@ -31,6 +31,8 @@ storage = firebase.storage()
 def home():
     if request.method == "POST":
 
+        inp = request.form["input_field"]
+
         # that means that our window wouldn't start yet
         start = False
 
@@ -40,8 +42,6 @@ def home():
 
         # just 2 possible variance
         num = ['1', '2']
-
-        inp = input("")
 
         # if user gives '1' or '2' :
         if inp.lower() in num:
