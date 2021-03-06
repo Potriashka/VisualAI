@@ -1,4 +1,3 @@
-
 # importing all needed modules
 import pygame, sys
 from pygame.locals import *
@@ -68,7 +67,7 @@ while start: # the main game loop
         posx2 = 100
         posy2 = 50
         y = 700 - posy2
-        widP = int(100 - 70 / height / 2 * y)
+        widP = int(100 - 140 / height / 2 * y)
         IMwid = pygame.transform.scale(img2, (int(700 / 100 * widP), 80))
 
 
@@ -85,4 +84,4 @@ while start: # the main game loop
     fpsClock.tick(FPS)
 
 
-# formula: x = 100 - 70 / height / 2 * y
+# formula: x = 100 - 140 / height / 2 * y
