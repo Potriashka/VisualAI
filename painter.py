@@ -1,9 +1,13 @@
+
+# importing all needed modules
 import pygame, sys
 from pygame.locals import *
 import requests
 import re
 import pyrebase
+import numba
 
+# we need it to connect to the firebase storage
 config = {
     "apiKey": "AIzaSyAsickaqxGF3TLmQ5Z9YYXm66MbpmM2CD4",
     "authDomain": "image-storer-948f7.firebaseapp.com",
@@ -15,28 +19,32 @@ config = {
     "measurementId": "G-E3NYZ71QLR"
 }
 
+# initializing of everything we need
 pygame.init()
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
 
+# that means that our window wouldn't start yet
 start = False
-
-
 
 FPS = 30 # frames per second setting
 fpsClock = pygame.time.Clock()
 
 inp = input("")
 
+# just 2 possible variance
 num = ['1', '2']
 
+# if user gives '1' or '2' :
 if inp.lower() in num:
-    start = True
+    start = True   # start main loop
 
 while start: # the main game loop
 
     DISPLAYSURF = pygame.display.set_mode((700, 700), 0, 32)
     pygame.display.set_caption('Animation')
+
+    height = 700 # we'll need it in future
 
     WHITE = (255, 255, 255)
 
@@ -57,13 +65,16 @@ while start: # the main game loop
         path_on_cloud = "images/cat.jpeg"
         storage.child(path_on_cloud).download("test_download3.jpg")
         img2 = pygame.image.load('test_download3.jpg')
-        posx2 = 280
-        posy2 = 550
+        posx2 = 100
+        posy2 = 50
+        y = 700 - posy2
+        widP = int(100 - 70 / height / 2 * y)
+        IMwid = pygame.transform.scale(img2, (int(700 / 100 * widP), 80))
 
 
     DISPLAYSURF.blit(Img, (posx, posy))
     if inp == '2':
-        DISPLAYSURF.blit(img2, (posx2, posy2))
+        DISPLAYSURF.blit(IMwid, (posx2, posy2))
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -72,3 +83,6 @@ while start: # the main game loop
 
     pygame.display.update()
     fpsClock.tick(FPS)
+
+
+# formula: x = 100 - 70 / height / 2 * y
