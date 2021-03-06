@@ -9,5 +9,5 @@
 ##### Then just run
 ```python
 ~$ cd src/
-~$ python painter.py
+~$ python main.py
 ```
